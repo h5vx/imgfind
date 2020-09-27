@@ -10,7 +10,7 @@ assets_files_count = os.listdir
 def test_recursive():
     result = tuple(supported_files_iter(assets_path, recursive=True))
 
-    assert len(result) == 13
+    assert len(result) == 14
 
     for path in result:
         assert os.path.isfile(path)
@@ -19,7 +19,7 @@ def test_recursive():
 def test_non_recursive():
     result = tuple(supported_files_iter(assets_path, recursive=False))
 
-    assert len(result) == 11
+    assert len(result) == 12
 
     dirname = os.path.dirname(result[0])
 
@@ -31,7 +31,7 @@ def test_non_recursive():
 def test_recursive_mime():
     result = tuple(supported_files_iter(assets_path, recursive=True, by_mime=True))
 
-    assert len(result) == 11
+    assert len(result) == 12
 
     dirname = os.path.dirname(result[0])
 
