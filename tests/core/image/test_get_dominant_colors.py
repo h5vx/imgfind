@@ -81,6 +81,33 @@ from tests.conftest import asset
             (234, 300, 3),
             id="PNG (transparent)",
         ),
+        pytest.param(
+            "8bit_grayscale.png",
+            2,
+            None,
+            ((255, 255, 255), (28, 28, 28)),
+            (0.96, 0.04),
+            (756, 1233, 3),
+            id="PNG-8",
+        ),
+        pytest.param(
+            "8bit_grayscale.png",
+            2,
+            100,
+            ((251, 251, 251), (208, 208, 208)),
+            (0.87, 0.13),
+            (61, 99, 3),
+            id="PNG-8 (downscale)",
+        ),
+        pytest.param(
+            "grayscale.gif",
+            2,
+            100,
+            ((255, 255, 255), (255, 255, 255)),
+            (1, 0),
+            (100, 100, 3),
+            id="GIF grayscale",
+        ),
     ),
 )
 def test_supported_images(asset_name, n_dominants, downscale_to, exp_palette, exp_freqs, exp_shape):
@@ -92,7 +119,7 @@ def test_supported_images(asset_name, n_dominants, downscale_to, exp_palette, ex
     assert len(freqs) == n_dominants
 
     np.testing.assert_equal(np.uint8(palette), exp_palette)
-    np.testing.assert_allclose(freqs, exp_freqs, rtol=0.01)
+    np.testing.assert_allclose(freqs, exp_freqs, atol=0.01)
     assert shape == exp_shape
 
 

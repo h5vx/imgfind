@@ -34,12 +34,17 @@ def get_dominant_colors(path: str, n: int, downscale_to: int = None) -> (Tuple[i
     # https://stackoverflow.com/questions/43111029/how-to-find-the-average-colour-of-an-image-in-python-with-opencv
     img = io.imread(path)
 
+    # Resize before any operations
+    if downscale_to:
+        img = downscale_image(img, downscale_to)
+
+    # Convert grayscale images to RGB
+    if len(img.shape) == 2:
+        img = color.gray2rgb(img)
+
     # Remove alpha channel if present
     if img.shape[-1] == 4:
         img = img[:, :, :-1]
-
-    if downscale_to:
-        img = downscale_image(img, downscale_to)
 
     pixels = np.float32(img.reshape(-1, 3))
 
