@@ -14,7 +14,7 @@ isort: venv
 black: venv
 	$(POETRY) run black .
 
-build:
+build: venv
 	$(POETRY) build
 
 formatting: isort black
