@@ -3,7 +3,7 @@ line-length = 120
 
 [tool.poetry]
 name = "imgfind"
-version = "0.1.0"
+version = "0.1.1"
 description = "Search images with specified color"
 authors = ["h5vx <h5v@protonmail.com>"]
 

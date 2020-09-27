@@ -7,6 +7,7 @@ import shutil
 from itertools import count
 from typing import List
 
+from imgfind import __version__
 from imgfind.core import fs, tasks
 from imgfind.utils import color
 
@@ -34,7 +35,7 @@ def main():
     cpu_count = os.cpu_count() or 1
     default_proc_count = max(1, int(cpu_count * 0.8))
 
-    p = argparse.ArgumentParser()
+    p = argparse.ArgumentParser(prog="imgfind")
     p.add_argument("-n", help="Number of dominant colors to calculate", type=int, default=2)
     p.add_argument(
         "-p",
@@ -43,6 +44,7 @@ def main():
         type=int,
         default=default_proc_count,
     )
+    p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     p.add_argument("--downscale", help="Downscale largest side to specified size before processing", type=int)
     p.add_argument("--by-mime", help="Accept files by mime type rather than by extension", action="store_true")
     p.add_argument("-r", "--recurse", help="Recurse into directories", action="store_true")
