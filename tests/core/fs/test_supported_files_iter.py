@@ -10,7 +10,7 @@ assets_files_count = os.listdir
 def test_recursive():
     result = tuple(supported_files_iter(assets_path, recursive=True))
 
-    assert len(result) == 14
+    assert len(result) == 15
 
     for path in result:
         assert os.path.isfile(path)

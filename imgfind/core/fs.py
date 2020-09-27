@@ -23,7 +23,7 @@ def is_supported_file(path: str, by_mime: bool = False):
         return mime in settings.SUPPORTED_MIME_TYPES
 
     _, ext = os.path.splitext(path)
-    ext = ext[1:]
+    ext = ext[1:].lower()
     return ext in settings.SUPPORTED_FILE_EXTENSIONS
 
 
