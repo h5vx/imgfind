@@ -24,16 +24,7 @@ def test(color, exp_result):
     np.testing.assert_allclose(result, exp_result, atol=0.01)
 
 
-@pytest.mark.parametrize(
-    "color",
-    (
-        "unknowncolor",
-        "xxxxxx",
-        "xxx",
-        "abx",
-        "1234567",
-    ),
-)
+@pytest.mark.parametrize("color", ("unknowncolor", "xxxxxx", "xxx", "abx", "1234567"))
 def test_raises_error(color):
     try:
         color_from_str(color)
